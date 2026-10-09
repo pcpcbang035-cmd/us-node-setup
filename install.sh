@@ -3,6 +3,10 @@
 # 用法: SSH 登录服务器后, 把本脚本内容一次性粘贴进去回车即可
 set -e
 
+echo "=== 0/5 检查依赖 ==="
+command -v curl >/dev/null || (apt-get update -qq && apt-get install -y -qq curl)
+command -v openssl >/dev/null || (apt-get update -qq && apt-get install -y -qq openssl)
+
 echo "=== 1/5 安装 Xray ==="
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
 
